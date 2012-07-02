@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE ead PUBLIC "-//Society of American Archivists//DTD ead.dtd (Encoded Archival Description (EAD) Version 1.0)//EN" "file:/c:\ead2002conv\dtds\eadv1\ead.dtd">
+<ead> 
+  <eadheader>
+	 <eadid>Test eadid</eadid>
+	 <filedesc>
+		<titlestmt>
+		  <titleproper>Test titleproper</titleproper>
+		</titlestmt>
+		<publicationstmt>
+		  <publisher> Test publisher</publisher>
+		</publicationstmt>
+	 </filedesc>
+  </eadheader>
+  <archdesc level="collection" langmaterial="eng lat fre ger spa rus ita">
+	 <did>
+		<head>Test did head</head>
+		<unittitle>Test unittitle
+		  <unitdate>Test unitdate</unitdate></unittitle>
+		<origination> Test origination</origination>
+		<physdesc>Test physdesc</physdesc>
+		<repository> Test repository</repository>
+	 </did>
+  </archdesc>
+</ead>

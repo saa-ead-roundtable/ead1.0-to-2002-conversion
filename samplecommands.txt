@@ -1,0 +1,9 @@
+These commands assume that you have opened a DOS shell and changed the directory to c:\ead2002conv\
+
+Command 1: bin\saxon -o v2002\example.2002.xml v1\example.xml xsl\v1to02.xsl
+
+Result of command 1: 1) file named example.2002.xml created in directory v2002; 2) file example.report.html created in doc directory.
+
+Command 2: bin\v1to02.pl c:\ead2002conv\v1\example.xml
+
+Result of command 2: 1) file example.v2002.xml created in v1 directory; 2) file example.report.html created in doc 
