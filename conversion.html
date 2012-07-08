@@ -1,0 +1,662 @@
+<!-- saved from url=(0070)http://www.iath.virginia.edu/ead/resources/ead2002conv/conversion.html -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+  <head>
+    <title>
+      Conversion of EAD 1
+    </title>
+    <meta content="MSHTML 6.00.2800.1400" name="GENERATOR">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style type="text/css">
+BODY {
+    MARGIN: 0.5in
+    }
+    P.MsoNormal {
+    FONT-SIZE: 10pt; MARGIN: 0in 0in 0pt; FONT-FAMILY: "Times New Roman"; punctuation-wrap: simple
+    }
+    LI.MsoNormal {
+    FONT-SIZE: 10pt; MARGIN: 0in 0in 0pt; FONT-FAMILY: "Times New Roman"; punctuation-wrap: simple
+    }
+    DIV.MsoNormal {
+    FONT-SIZE: 10pt; MARGIN: 0in 0in 0pt; FONT-FAMILY: "Times New Roman"; punctuation-wrap: simple
+    }
+    P.MsoBodyText {
+    FONT-SIZE: 12pt; MARGIN: 0in 0in 0pt; FONT-FAMILY: "Times New Roman"; punctuation-wrap: simple
+    }
+    LI.MsoBodyText {
+    FONT-SIZE: 12pt; MARGIN: 0in 0in 0pt; FONT-FAMILY: "Times New Roman"; punctuation-wrap: simple
+    }
+    DIV.MsoBodyText {
+    FONT-SIZE: 12pt; MARGIN: 0in 0in 0pt; FONT-FAMILY: "Times New Roman"; punctuation-wrap: simple
+    }
+    </style>
+  </head>
+  <body>
+    <div class="Section1">
+      <p class="MsoNormal">
+        <b><span style="FONT-SIZE: 14pt; FONT-FAMILY: Arial">Conversion of EAD 1.0 to EAD 2002</span></b>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <b><span style="FONT-SIZE: 12pt">Table of Contents</span></b>
+      </p>
+      <p class="MsoNormal">
+        <b><span style="FONT-SIZE: 12pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Introduction</span></b>
+      </p>
+      <p class="MsoNormal">
+        <b><span style="FONT-SIZE: 12pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; What do I need to do?</span></b>
+      </p>
+      <p class="MsoNormal">
+        <b><span style="FONT-SIZE: 12pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Notes on the execution command</span></b>
+      </p>
+      <p class="MsoNormal">
+        <b><span style="FONT-SIZE: 12pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Conversion Assumptions</span></b>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <b><span style="FONT-SIZE: 12pt">Section A:&nbsp; Introduction</span></b>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">This document describes a process for converting EAD instances written according to Version 1.0 of the EAD DTD into ones that conform to Version 2002.&nbsp; This is achieved through the use of an XSLT stylesheet and utilizes a series of files and applications compressed as ead2002conv.exe. The following description consolidates and amplifies information that is found in the readme.txt file included in the zip file and as comments in the accompanying stylesheets.&nbsp;&nbsp; The zip file includes a copy of the XSLT processor Saxon, associated stylesheets, a copy of the EAD2002 DTD, and a script written in the Perl programming language.&nbsp;&nbsp;&nbsp; When it is uncompressed, a series of folders are created into which the various files are placed.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">Transformation is performed using an XSLT processor called Instant Saxon, which is supplied in the conversion package.&nbsp; As used here, Saxon is a command line processor.&nbsp; It may be executed either from a DOS prompt or from the Windows Run command which is accessed via the Start button on the desktop's toolbar.&nbsp;&nbsp; Institutions working in other operating systems will have to use the full version of Saxon, compiled for their OS.&nbsp;&nbsp; Saxon also requires the presence of a Java Virtual Machine.&nbsp;&nbsp; More recent versions of Windows (though not XP) and Internet Explorer contain the necessary software.&nbsp; Otherwise, Sun's JDK may be employed.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">One can perform the transformation from version 1.0 to version 2002 either directly in Saxon as described below or by using a Perl script which serves as a "wrapper" program for Saxon and which is also contained in the conversion package.&nbsp; Using Saxon directly will be the more straightforward option for those not familiar with Perl though the latter has the advantage that it can convert the contents of an entire directory in a single operation.&nbsp; Saxon converts only one file at a time and, while more time-consuming, this approach actually may be an advantage if one wishes to verify the results of each conversion as it occurs.&nbsp;&nbsp; No directions for the use of Perl are included here beyond those that are common to both processes.&nbsp;&nbsp; Some additional information on Perl is included in the readme.txt file.&nbsp;&nbsp; The transformation process can also be set to produce a report file that describes exactly what actions were taken in the conversion of each EAD file.&nbsp; This report is structured as an HTML document for viewing in a browser.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p><span style="FONT-SIZE: 12pt; FONT-FAMILY: 'Times New Roman'"><br style="PAGE-BREAK-BEFORE: always" clear="all"></span>
+      <p class="MsoNormal">
+        <b><span style="FONT-SIZE: 12pt">Section B:&nbsp; What do I need to do?</span></b>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">1.&nbsp;&nbsp; Download and unzip the file ead2002conv.exe.&nbsp; The conversions assume that the software is installed in the directory c:\ead2002conv.&nbsp;&nbsp;&nbsp; If you install the software in another directory, be sure to alter the path statements in the execution command described in step 3 below.&nbsp;&nbsp; You will also need to change the path statement for the destination of the conversion report file.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">2.&nbsp;&nbsp; The software assumes that the directory v1 will be the location of version 1.0 source files and that v2002 will be the location of version 2002 result files.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">3.&nbsp;&nbsp; Review the assumptions about the conversion process that are described in the following section to ensure that the changes that are occurring as part of the conversion conform to institutional expectations.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">4.&nbsp;&nbsp; Verify the character set encoding that you have used in your source document and the encoding you wish in the resulting file.&nbsp;&nbsp;&nbsp; The stylesheet uses ISO 8859-1 as the default output.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">5.&nbsp;&nbsp; Transform the EAD files.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">Type a variation of the following command, substituting the proper path statements and file name, on the command line in DOS or within the Run box in Windows.&nbsp;&nbsp; There are five parts to the command.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal" style="MARGIN-LEFT: 0.5in; TEXT-INDENT: -0.25in">
+        <span style="FONT-SIZE: 12pt; FONT-FAMILY: Symbol">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <span style="FONT-SIZE: 12pt">The directory location of conversion software</span>
+      </p>
+      <p class="MsoNormal" style="MARGIN-LEFT: 0.5in; TEXT-INDENT: -0.25in">
+        <span style="FONT-SIZE: 12pt; FONT-FAMILY: Symbol">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <span style="FONT-SIZE: 12pt">The location and name of the output file</span>
+      </p>
+      <p class="MsoNormal" style="MARGIN-LEFT: 0.5in; TEXT-INDENT: -0.25in">
+        <span style="FONT-SIZE: 12pt; FONT-FAMILY: Symbol">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <span style="FONT-SIZE: 12pt">The location and name of the input file</span>
+      </p>
+      <p class="MsoNormal" style="MARGIN-LEFT: 0.5in; TEXT-INDENT: -0.25in">
+        <span style="FONT-SIZE: 12pt; FONT-FAMILY: Symbol">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <span style="FONT-SIZE: 12pt">The location and name of the stylesheet</span>
+      </p>
+      <p class="MsoNormal" style="MARGIN-LEFT: 0.5in; TEXT-INDENT: -0.25in">
+        <span style="FONT-SIZE: 12pt; FONT-FAMILY: Symbol">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <span style="FONT-SIZE: 12pt">Any variable parameters you wish to specify. Options are listed under Notes below.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">Generalized, the command follows this syntax:</span>
+      </p>
+      <p class="MsoNormal" style="MARGIN-LEFT: 0.5in">
+        <span style="FONT-SIZE: 12pt">LocationOfTheConversionSoftware&nbsp;</span>
+      </p>
+      <p class="MsoNormal" style="MARGIN-LEFT: 0.5in">
+        <span style="FONT-SIZE: 12pt">-o PathToTheOutputFile\OutfileFileName.xml</span>
+      </p>
+      <p class="MsoNormal" style="MARGIN-LEFT: 0.5in">
+        <span style="FONT-SIZE: 12pt">PathToTheSourceFile\SourceFileName.xml&nbsp;</span>
+      </p>
+      <p class="MsoNormal" style="MARGIN-LEFT: 0.5in">
+        <span style="FONT-SIZE: 12pt">PathToTheStylesheet\StylesheetName.xsl</span>
+      </p>
+      <p class="MsoNormal" style="MARGIN-LEFT: 0.5in">
+        <span style="FONT-SIZE: 12pt">parameterName=parameter value</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">A typical command in Run might read:</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">c:\ead2002conv\bin\saxon -o&nbsp; h:\ead\2468.xml&nbsp;&nbsp; h:ead2002\2468.xml</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">isoconvdate=2003-11-19 convdate November 11, 2003 mainagencycode=Mnhi</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">reportpath=h\:conversion.html</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">The same command from the DOS prompt would read:</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">c:\ead2002conv&gt;bin\saxon -o&nbsp;&nbsp; h:\ead\2468.xml h:ead2002\2468.xml</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">isoconvdate=2003-11-19 convdate November 11, 2003 mainagencycode=Mnhi</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">reportpath=h\:conversion.html</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">6.&nbsp;&nbsp; After executing this command, review the conversion report for any anomalies or actions that do not conform to your desired output</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">7.&nbsp; Edit the resulting EAD file as necessary in your favorite XML editor.&nbsp;&nbsp; In particular, you will probably have to edit the &lt;eadid&gt; element for reasons that are described in the next section.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">8.&nbsp;&nbsp; Parse the resulting EAD instance against the EAD2002 DTD to ensure that the resulting file is valid.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <b><span style="FONT-SIZE: 12pt">Section C:&nbsp; Notes on the Execution Command:&nbsp;</span></b>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">1.&nbsp;&nbsp; The example of an execution command in step 3 uses the Saxon application in the directory c:\ead2002conv\bin to convert the file 2468.xml in the folder h:\ead into a new file with the same name,&nbsp; 2468.xml, and places it in the directory h:\ead2002.&nbsp;&nbsp; In the resulting file, the maintenance agency code in &lt;eadid&gt; is set to Mnhi for the Minnesota Historical Society and the date of the conversion is reported as text in the YYYY element and as an ISO code in its normal attribute.&nbsp; The expression "-o" is a Saxon parameter statement that indicates that the following value is the location and/or name of the output file.&nbsp; Follow the syntax of the example above.&nbsp;&nbsp; There is an extra \ in the examples in the readme.txt file.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoBodyText">
+        2.&nbsp;&nbsp; The unpacking of the file ead2002.exe automatically creates default directories for version 1.0 source files and version 2002 result files.&nbsp; The default folders are named "v1" and "v2002".&nbsp;&nbsp;&nbsp; Other source and result locations may be employed provided the appropriate path statements are spelled out in the execution command. During the transformation process, Saxon will attempt to locate the copy of the EAD version 1.0 DTD at the address given in the system id portion (that which falls within the last set of quotation marks) of the DOCTYPE declaration of your version 1.0 files.&nbsp;&nbsp; If it fails to find the DTD, the transformation will fail immediately.&nbsp;&nbsp;&nbsp; If you are placing your version 1.0 files in the folder "v1", you may need to adjust the system id statement in your EAD files accordingly or include a copy of ead.dtd (and eadbase.ent) there, whether the path to ead.dtd is relative or absolute.
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">3.&nbsp; The XSLT stylesheet specifies that the location of the conversion report is c:\ead2002conv\doc.&nbsp;&nbsp; The zip file automatically creates this directory.&nbsp;&nbsp; If you wish to direct the report elsewhere, you will either have to change the path in the XSLT stylesheet (hint: it is on line 86) or specify the location in a parameter as described in the section on parameters below.&nbsp;&nbsp; Of course, you can also use a parameter to disable the generation of the report completely.&nbsp;</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&nbsp;&nbsp;</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">4.&nbsp;&nbsp; Certain parameter statements in the stylesheet determine various aspects of the transformation process.&nbsp; &nbsp;&nbsp;These are documented in the stylesheet itself and are summarized below.&nbsp;&nbsp; One can override the default values either by editing the stylesheet or including overriding statements at the end of the execution command, as shown in the examples under step 3 above.&nbsp;&nbsp; The parameters are:</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <b><span style="FONT-SIZE: 12pt">countrycode</span></b>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">The stylesheet default added to &lt;eadid&gt; as @countrycode is "us".&nbsp;&nbsp; Use ISO 3166-1 values.</span>
+      </p>
+      <p class="MsoNormal">
+        <b><span style="FONT-SIZE: 12pt">mainagencycode</span></b>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">The stylesheet default added to &lt;eadid&gt; as @mainagencycode is "ctY".&nbsp; (Guess where Stephen Yearl works.)&nbsp;&nbsp;&nbsp; Use ISO 15511 values when replacing this value which you will want to do unless you too work at Yale.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <b><span style="FONT-SIZE: 12pt">convdate</span></b>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">The stylesheet default value for the date of the transformation, as added to &lt;revisondesc&gt; &lt;change&gt;&lt;date&gt;, is "July 17, 2003"</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <b><span style="FONT-SIZE: 12pt">isoconvdate</span></b>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">The stylesheet default value for date, expressed as an ISO code, as added to @normal in &lt;revisondesc&gt; &lt;change&gt;&lt;date&gt;, is "2003-07-16".</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <b><span style="FONT-SIZE: 12pt">docname</span></b>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">This is the file name for the conversion report.&nbsp;&nbsp; The stylesheet default value is "conversion".&nbsp; The path to this file is set in the stylesheet as directoryname:\ead2002conv\doc.&nbsp;&nbsp; Either the file name may be overridden from the command line here.&nbsp;&nbsp; The rest of the path statement may be overridden from reportpath.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <b><span style="FONT-SIZE: 12pt">dtdpath</span></b>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">This parameter sets the value that is included in the system identifier within the DOCTYPE declaration of new EAD 2002 file as the location for the file ead.dtd.&nbsp;&nbsp;&nbsp;&nbsp; The stylesheet default is&nbsp; /dtds/ead.dtd which assumes that the ead.dtd file is located in a directory called "dtds" that resides beneath the directory where the EAD files is kept.&nbsp; If this does not match your file structure, you will need to change the statement.&nbsp;&nbsp;</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <b><span style="FONT-SIZE: 12pt">report</span></b>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">This parameter determines whether or not a report of the conversion process is produced.&nbsp;&nbsp; The default value in the stylesheet is "y".</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <b><span style="FONT-SIZE: 12pt">reportpath</span></b>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">This parameter defines the location of the conversion report.&nbsp; The stylesheet default has several parts: the name of the drive where this software was installed, a path statement "\ead2002conv\doc\", the value of the docname parameter, with the extension ".report.html".</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">If the software was installed in the directory H: and the default value for docname is retained, the default reportpath would be</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; h:\ead2002conv\doc\conversion.report.html</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</span>
+      </p>
+      <p class="MsoNormal">
+        <b><span style="FONT-SIZE: 12pt">bundle</span></b>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">The wrapper elements &lt;admininfo&gt; and &lt;add&gt; have been deprecated in EAD2002.&nbsp; To use them, one needs to adjust the DTD file itself.&nbsp;&nbsp; This parameter determines what will be done with these elements during conversion.&nbsp; There are two possibilities:&nbsp; replace &lt;admininfo&gt; and &lt;add&gt; with the generic wrapper &lt;descgroup&gt; or remove the wrapper elements completely.&nbsp;&nbsp; This parameter indicates whether to bundle them into &lt;descgrp&gt; or not.&nbsp;&nbsp; The stylesheet default value is "n".&nbsp;</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">You must understand, however, that even if this parameter value is set to "n", these elements may be bundled as described in the discussion of &lt;add&gt; and &lt;admininfo&gt; in the Conversion Assumptions section below.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <b><span style="FONT-SIZE: 12pt">langlang</span></b>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">This parameter determines what happens as a result of the presence of the langmaterial attribute in &lt;archdesc&gt; in version 1.0 documents.&nbsp;&nbsp; The conversion stylesheet creates a new element in the EAD 20002 document, thusly.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;langmaterial&gt;</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;language langcode="value"&gt;value&lt;/language&gt;</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/langmaterial&gt;</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">The coded value of @langmaterial is written out in the &lt;language&gt; element according to a conversion table in the file iso639-2.xml and the value of @langmaterial is copied into its&nbsp; langcode attribute.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">The stylesheet default value is "eng" which produces the following output.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&lt;langmaterial&gt;</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;language langcode="eng"&gt;English&lt;/language&gt;</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&lt;/langmaterial&gt;</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <b><span style="FONT-SIZE: 12pt">converter</span></b>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">This parameter defines the name of the conversion stylesheet.&nbsp; The default value is "v1to02.xsl"<br style="PAGE-BREAK-BEFORE: always" clear="all"></span>
+      </p>
+      <p class="MsoNormal">
+        <b><span style="FONT-SIZE: 12pt">Section D:</span></b><span style="FONT-SIZE: 12pt">&nbsp; <b>Conversion Assumptions</b></span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">The Stylesheet makes various assumptions during the conversion process based on changes made in the 2002 version of EAD.&nbsp;&nbsp; These are spelled out below.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <b><span style="FONT-SIZE: 12pt">OBSOLETE:</span></b>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">Elements and attributes NOT available in EAD 2002.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <i><span style="FONT-SIZE: 12pt">elements</span></i>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&lt;spanspec&gt;</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v1to02.xsl eliminates this element from both &lt;tspec&gt; and &lt;tgroup&gt;</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&lt;tfoot&gt;</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v1to02.xsl writes text in a &lt;tfoot&gt; to &lt;row altrender="tfoot"&gt;</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <i><span style="FONT-SIZE: 12pt">attributes</span></i>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">behavior, content-role,&nbsp; content-title, extent, inline, orient, pubstatus, rotate, shortentry, spanname, tabstyle, tgroupstyle, tocentry, xlink:form</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</span>
+      </p>
+      <p class="MsoNormal" style="TEXT-INDENT: 0.5in">
+        <span style="FONT-SIZE: 12pt">v1to02.xsl eliminates these attribute values</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">numbered</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; converts to altrender="numbered" or altrender="unumbered"</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">othersource</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; converts to source="value_of_othersource"</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">systemid</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; converts to &lt;eadid&gt;System ID=value_of_systemid&lt;/eadid&gt;&nbsp;</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">targettype (not actually in EAD v1.0)</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <b><span style="FONT-SIZE: 12pt">DEPRECATED:</span></b>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">Elements and attributes strongly recommended not to be used, and are not permitted by default.&nbsp; Such elements may only be made allowable by modifying the EAD 2002 DTD.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <i><span style="FONT-SIZE: 12pt">elements</span></i>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&lt;add&gt;</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&lt;admininfo&gt;</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">If the "bundle" parameter is set to "y", as described above, the two elements are not removed or changed.</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">If the "bundle" parameter is set to "n", which is the default value as described above, any of several actions may occur depending on the structure of the element as described below.&nbsp;&nbsp; The conversion process for both &lt;add&gt; and &lt;admininfo&gt; follows the same pattern in the scenarios described below.&nbsp;</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">A review of the content model of these elements follows as it is necessary to understand the relationship between their data structure and the conversion process.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">Both Administrative Information &lt;admininfo&gt; and Adjunct Descriptive Data &lt;add&gt; have been deprecated in EAD 2002.&nbsp;&nbsp; While the DTD may be modified to revalidate them, the EAD Working Group discourages this and makes no promise that they will be available in future versions of the DTD.&nbsp;&nbsp; Now is the time to make the transition.&nbsp; Where it is absolutely necessary to bundle groups of elements together, the DTD now provides a generic wrapper element, Description Group &lt;descgrp&gt;.&nbsp;&nbsp;&nbsp; Before adopting this element wholesale, a repository should seriously consider the practical value of adding this additional element.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">In EAD version 1.0, both &lt;add&gt; and &lt;admininfo&gt; may contain three types of child elements, i.e. those nested within it.&nbsp;&nbsp; In addition to the parent element (add or admininfo), there may be a head, the generic block elements (address, blockquote, chronlist, list, note, paragraph, and table), and certain descriptive elements.&nbsp;</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">For &lt;add&gt;, the descriptive elements are add, bibliography, fileplan, index, otherfindaid, relatedmaterial, and separated material.&nbsp;</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">For &lt;admininfo), the descriptive elements are accessrestrict, accruals, acqinfo, admininfo, altformavailable, appraisal,&nbsp; custodhist, prefercite, processinfo, and userestrict.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">The conversion algorithm may produce any of several outputs depending on the structure of the parent element.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">Output 1:&nbsp; If the parent element contains block elements but no descriptive elements, the parent element is converted to &lt;odd&gt; and the name of the parent element is added as an attribute, e.g. &lt;odd type="add"&gt;.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">Output 2:&nbsp; If the parent element contains a single descriptive element and no block elements, the parent element and its head element are removed.&nbsp; Any head element associated with the descriptive element remains.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">Output 3:&nbsp; If the parent element contains a head element and more than one descriptive element, the parent element is converted to &lt;descgrp&gt; and the name of the parent element is added as an attribute, e.g. &lt;descgrp type="add"&gt;.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">Output 4:&nbsp; If the parent element lacks a head element and contains more than one descriptive element, the parent element is removed.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">Output 5:&nbsp;&nbsp; If the parent element is used recursively as a descriptive element and the parent has a head, the parent element is removed and descriptive element is converted to &lt;odd&gt; and the name of the descriptive element is added as an attribute, e.g. &lt;odd&nbsp; type="add"&gt;.&nbsp; NOTE:&nbsp; The stylesheet does not distinguish between the situation where &lt;add&gt; or &lt;adminifo&gt; is used as a parent element and when it appears recursively as its own child.&nbsp;&nbsp; This is generally not a problem except for the next and somewhat obscure scenario.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">Output 6:&nbsp;&nbsp; If the parent element is used recursively as a descriptive element but lacks a head, the stylesheet removes the parent element completely resulting in an invalid document.</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&lt;dentry&gt;</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; content written straight to the &lt;did&gt; or other component child element</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&lt;drow&gt;</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; eliminated.</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&lt;organization&gt;</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; converted to &lt;arrangement&gt;</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&lt;tspec&gt;</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; eliminated</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <i><span style="FONT-SIZE: 12pt">attributes</span></i>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">langmaterial</span>
+      </p>
+      <p class="MsoNormal" style="MARGIN-LEFT: 0.5in">
+        <span style="FONT-SIZE: 12pt">converts to &lt;langmaterial&gt;&lt;language langcode="ISO639-2b_code"&gt;language_name (in French or English)&lt;/language&gt;</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">legalstatus</span>
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; converts to, e.g. &lt;legalstatus type="public"&gt;Public&lt;/legalstatus&gt;</span>
+      </p>
+      <p class="MsoNormal">
+        &nbsp;
+      </p>
+      <p class="MsoNormal">
+        <span style="FONT-SIZE: 12pt">otherlegalstatus</span>
+      </p>
+      <p class="MsoNormal" style="MARGIN-LEFT: 0.5in">
+        <span style="FONT-SIZE: 12pt">convers to &lt;legalstatus type="my_other_legalstatus"&gt;my other legalstatus&lt;/legalstatus&gt;</span>
+      </p>
+      <p class="MsoNormal" style="MARGIN-LEFT: 0.5in">
+        &nbsp;
+      </p>
+      <p class="MsoNormal" style="MARGIN-LEFT: 0.5in">
+        &nbsp;
+      </p>
+    </div>
+  </body>
+</html>
