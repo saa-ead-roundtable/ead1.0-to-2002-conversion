@@ -8,8 +8,7 @@ In no respect shall EADRT incur any liability for any damages, including, but li
 EAD version 1.0 (XML) to EAD 2002 Conversion Package
 ====================================================
 2003-10-15
-stephen.yearl@yale.edu
-
+Originally maintained by Stephen Yearl
 
 =================
 1. General Notes:
@@ -17,6 +16,7 @@ stephen.yearl@yale.edu
 
 This conversion package is based on an XSLT conversion script (v1to02.xsl) by Daniel Pitti. Slightly modified with additions from Michael Fox & Stephen Yearl. Tested with Saxon 6.5.2, 6.5.3 & xsltproc. 
 
+Additional documentation about the conversion package can be found in conversion.html or conversion.doc.
 
 =====================
 2. Package Structure:
