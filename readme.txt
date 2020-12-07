@@ -1,8 +1,8 @@
 Direct download link: https://github.com/saa-ead-roundtable/ead1.0-to-2002-conversion/zipball/master
 
-DISCLAIMER: This toolset is hosted by the EAD Roundtable of the Society of American Archivists (henceforth "EADRT"). EADRT is furnishing this item "as is". EADRT does not provide any warranty of the item whatsoever, whether express, implied, or statutory, including, but not limited to, any warranty of merchantability or fitness for a particular purpose or any warranty that the contents of the item will be error-free.
+DISCLAIMER: This toolset is hosted by the EAS Section (formerly EAD Roundtable) of the Society of American Archivists (henceforth "EASST"). EASST is furnishing this item "as is". EASST does not provide any warranty of the item whatsoever, whether express, implied, or statutory, including, but not limited to, any warranty of merchantability or fitness for a particular purpose or any warranty that the contents of the item will be error-free.
 
-In no respect shall EADRT incur any liability for any damages, including, but limited to, direct, indirect, special, or consequential damages arising out of, resulting from, or any way connected to the use of the item, whether or not based upon warranty, contract, tort, or otherwise; whether or not injury was sustained by persons or property or otherwise; and whether or not loss was sustained from, or arose out of, the results of, the item, or any services that may be provided by EADRT. 
+In no respect shall EASST incur any liability for any damages, including, but limited to, direct, indirect, special, or consequential damages arising out of, resulting from, or any way connected to the use of the item, whether or not based upon warranty, contract, tort, or otherwise; whether or not injury was sustained by persons or property or otherwise; and whether or not loss was sustained from, or arose out of, the results of, the item, or any services that may be provided by EADRT. 
 
 ====================================================
 EAD version 1.0 (XML) to EAD 2002 Conversion Package
